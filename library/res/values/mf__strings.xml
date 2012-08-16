@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ACTIVITY_ENTRY_NAME</string>
+
+    <string name="lixar_debug_googlemaps_sdk_key">00m__c2TX2l9EoMAUg9XzOGdOVBqGt5sjeXAvkQ</string>
+    <item type="string" name="googlemaps_sdk_key">@string/lixar_debug_googlemaps_sdk_key</item>
+</resources>
