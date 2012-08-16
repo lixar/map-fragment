@@ -20,11 +20,12 @@ import android.app.LocalActivityManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import com.actionbarsherlock.app.SherlockFragment;
 
 /**
  * This is a fragment that will be used during transition from activities to fragments.
  */
-public class LocalActivityManagerFragment extends Fragment {
+public class LocalActivityManagerFragment extends SherlockFragment {
 
     private static final String TAG = LocalActivityManagerFragment.class.getSimpleName();
     private static final String KEY_STATE_BUNDLE = "localActivityManagerState";
