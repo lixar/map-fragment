@@ -48,7 +48,10 @@ public abstract class ActivityHostFragment extends LocalActivityManagerFragment 
             }
             
             wd.setVisibility(View.VISIBLE);
-            wd.setFocusableInTouchMode(true);
+			// This seems to cause confusion with the Menu Option.  When enabled
+			// the keyevents somehow gets lost in the MapActivity within the
+			// fragment and therefore cause the menu not to show up.
+            //wd.setFocusableInTouchMode(true);
             if(wd instanceof ViewGroup) {
                 ((ViewGroup) wd).setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
             }
