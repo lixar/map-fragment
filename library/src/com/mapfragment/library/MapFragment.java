@@ -1,10 +1,7 @@
 package com.mapfragment.library;
 
 import android.app.Activity;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import com.google.android.maps.MapView;
 
 /**
@@ -15,7 +12,7 @@ import com.google.android.maps.MapView;
  */
 public class MapFragment extends ActivityHostFragment {
 
-	protected MapView mapView;
+	private MapView mapView;
 
 	@Override
 	protected Class<? extends Activity> getActivityClass() {
@@ -23,9 +20,23 @@ public class MapFragment extends ActivityHostFragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View view = super.onCreateView(inflater, container, savedInstanceState);
-		mapView = (MapView) view.findViewById(R.id.mapview);
-		return view;
+	protected View createHostedView() {
+		View hostedView = super.createHostedView();
+
+		mapView = (MapView) hostedView.findViewById(R.id.mf__hosted_view);
+		if (mapView == null) {
+			throw new IllegalStateException("mapView is null please make sure you've given your MapView instance an id of mf__hosted_view");
+		}
+		return hostedView;
+	}
+
+	protected MapView getMapView() {
+		return mapView;
+	}
+
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		mapView = null;
 	}
 }

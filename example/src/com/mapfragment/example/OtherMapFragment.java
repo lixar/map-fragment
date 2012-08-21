@@ -17,6 +17,9 @@
 package com.mapfragment.example;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import com.google.android.maps.GeoPoint;
 import com.mapfragment.library.MapFragment;
 
@@ -34,26 +37,31 @@ public class OtherMapFragment extends MapFragment {
 	}
 
 	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		return inflater.inflate(R.layout.main_fragment, container, false);
+	}
+
+	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 
 		getActivity().setTitle("Other Map Fragment");
-		mapView.setBuiltInZoomControls(true);
+		getMapView().setBuiltInZoomControls(true);
 	}
 
 	@Override
 	public void onPause() {
 		super.onPause();
 
-		mapCenter = mapView.getMapCenter();
-		zoomLevel = mapView.getZoomLevel();
+		mapCenter = getMapView().getMapCenter();
+		zoomLevel = getMapView().getZoomLevel();
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
 
-		mapView.getController().setCenter(mapCenter);
-		mapView.getController().setZoom(zoomLevel);
+		getMapView().getController().setCenter(mapCenter);
+		getMapView().getController().setZoom(zoomLevel);
 	}
 }

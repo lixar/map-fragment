@@ -22,14 +22,13 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.google.android.maps.GeoPoint;
-import com.google.android.maps.ItemizedOverlay;
-import com.google.android.maps.Overlay;
-import com.google.android.maps.OverlayItem;
+import com.google.android.maps.*;
 import com.mapfragment.library.DefaultMapActivity;
 import com.mapfragment.library.MapFragment;
 
@@ -72,6 +71,30 @@ public class MainMapFragment extends MapFragment {
 	}
 
 	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		return inflater.inflate(R.layout.main_fragment, container, false);
+	}
+
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+
+
+		getMapView().setBuiltInZoomControls(false);
+
+		List<Overlay> overlays = getMapView().getOverlays();
+		overlays.clear();
+		overlays.add(itemizedOverlay);
+
+		getActivity().setTitle("Main Map Fragment");
+	}
+
+	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 
@@ -103,36 +126,19 @@ public class MainMapFragment extends MapFragment {
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
-		super.onViewCreated(view, savedInstanceState);
-		mapView.setBuiltInZoomControls(false);
-
-		List<Overlay> overlays = mapView.getOverlays();
-		overlays.clear();
-		overlays.add(itemizedOverlay);
-	}
-
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-
-		getActivity().setTitle("Main Map Fragment");
-	}
-
-	@Override
 	public void onPause() {
 		super.onPause();
 
-		mapCenter = mapView.getMapCenter();
-		zoomLevel = mapView.getZoomLevel();
+		mapCenter = getMapView().getMapCenter();
+		zoomLevel = getMapView().getZoomLevel();
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
 
-		mapView.getController().setCenter(mapCenter);
-		mapView.getController().setZoom(zoomLevel);
+		getMapView().getController().setCenter(mapCenter);
+		getMapView().getController().setZoom(zoomLevel);
 	}
 
 	private void addOtherFragment() {
