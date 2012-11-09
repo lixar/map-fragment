@@ -16,7 +16,6 @@
 
 package com.mapfragment.example;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -28,8 +27,10 @@ import android.view.ViewGroup;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.google.android.maps.*;
-import com.mapfragment.library.DefaultMapActivity;
+import com.google.android.maps.GeoPoint;
+import com.google.android.maps.ItemizedOverlay;
+import com.google.android.maps.Overlay;
+import com.google.android.maps.OverlayItem;
 import com.mapfragment.library.MapFragment;
 
 import java.util.ArrayList;
@@ -44,11 +45,6 @@ public class MainMapFragment extends MapFragment {
 	private GeoPoint mapCenter;
 	private int zoomLevel;
 	private MyItemizedOverlay itemizedOverlay;
-    
-    @Override
-    protected Class<? extends Activity> getActivityClass() {
-        return DefaultMapActivity.class;
-    }
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
