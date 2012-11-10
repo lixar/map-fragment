@@ -28,9 +28,12 @@ import android.view.Window;
  * This is a fragment that will be used during transition from activities to fragments.
  */
 public abstract class ActivityHostFragment extends LocalActivityManagerFragment {
-    
-    protected abstract Class<? extends Activity> getActivityClass();
-    private final static String ACTIVITY_TAG = "hosted";
+
+	protected abstract Class<? extends Activity> getActivityClass();
+
+	private final static String ACTIVITY_TAG = "hosted";
+
+	private View hostedView;
 
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -49,20 +52,27 @@ public abstract class ActivityHostFragment extends LocalActivityManagerFragment 
 			throw new ClassCastException("View by id 'mf__hosted_view_frame' needs to be a subclass of ViewGroup");
 		}
 
-		hostedViewFrame.addView(createHostedView());
+		hostedView = createHostedView();
+		hostedViewFrame.addView(hostedView);
 		view.requestLayout();
 	}
 
-	protected View createHostedView() {
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		releaseHostedView();
+	}
+
+	private View createHostedView() {
 		Intent intent = new Intent(getActivity(), getActivityClass());
 
-		final Window w = getLocalActivityManager().startActivity(ACTIVITY_TAG, intent);
-		final View wd = w != null ? w.getDecorView() : null;
+		final Window w = createActivity(ACTIVITY_TAG, intent);
+		final View wd = (w != null) ? w.getDecorView() : null;
 
 		if (wd != null) {
 			ViewParent parent = wd.getParent();
-			if(parent != null) {
-				ViewGroup v = (ViewGroup)parent;
+			if (parent != null) {
+				ViewGroup v = (ViewGroup) parent;
 				v.removeView(wd);
 			}
 
@@ -70,17 +80,37 @@ public abstract class ActivityHostFragment extends LocalActivityManagerFragment 
 			// This seems to cause confusion with the Menu Option.  When enabled
 			// the keyevents somehow gets lost in the MapActivity within the
 			// fragment and therefore cause the menu not to show up.
-            //wd.setFocusableInTouchMode(true);
-            if(wd instanceof ViewGroup) {
-                ((ViewGroup) wd).setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
-            }
-        }
-        return wd;
-    }
+			//wd.setFocusableInTouchMode(true);
+			if (wd instanceof ViewGroup) {
+				((ViewGroup) wd).setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
+			}
+		}
+		return wd;
+	}
+
+	private void releaseHostedView() {
+		Window hostedActivityWindow = destroyActivity(ACTIVITY_TAG, true);
+		View hostedActivityDecorView = (hostedActivityWindow != null) ? hostedActivityWindow.getDecorView() : null;
+
+		if (hostedActivityDecorView != null) {
+
+			ViewParent parent = hostedActivityDecorView.getParent();
+			if (parent != null) {
+				ViewGroup v = (ViewGroup) parent;
+				v.removeView(hostedActivityDecorView);
+			}
+		}
+		hostedView = null;
+	}
+
+	protected View getHostedView() {
+		return hostedView;
+	}
 
     /**
      * For accessing public methods of the hosted activity
      */
     public Activity getHostedActivity() {
 		return getLocalActivityManager().getActivity(ACTIVITY_TAG);
+    }
 }

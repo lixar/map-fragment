@@ -1,8 +1,11 @@
 package com.mapfragment.library;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 import com.google.android.maps.MapView;
 
 import java.lang.reflect.AccessibleObject;
@@ -25,14 +28,14 @@ public class MapFragment extends ActivityHostFragment {
 	}
 
 	@Override
-	protected View createHostedView() {
-		View hostedView = super.createHostedView();
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
 
+		View hostedView = getHostedView();
 		mapView = (MapView) hostedView.findViewById(R.id.mf__hosted_view);
 		if (mapView == null) {
-			throw new IllegalStateException("mapView is null please make sure you've given your MapView instance an id of mf__hosted_view");
+			throw new IllegalStateException("mapView is null please make sure you've given your MapView an id of 'mf__hosted_view'");
 		}
-		return hostedView;
 	}
 
 	protected MapView getMapView() {
