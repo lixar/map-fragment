@@ -34,3 +34,7 @@ proguard.cfg
 .DS_Store 
 tmp
 
+#Project
+example/project.properties
+library/project.properties
+
