@@ -30,12 +30,18 @@ import java.util.Map;
 /**
  * This is a fragment that will be used during transition from activities to fragments.
  */
+@SuppressWarnings( "deprecation" )
 public class LocalActivityManagerFragment extends SherlockFragment {
 
     private static final String TAG = LocalActivityManagerFragment.class.getSimpleName();
     private static final String KEY_STATE_BUNDLE = "localActivityManagerState";
 
-    private LocalActivityManager mLocalActivityManager;
+	private LocalActivityManager mLocalActivityManager;
+
+
+	protected LocalActivityManager getLocalActivityManager() {
+		return mLocalActivityManager;
+	}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -112,16 +118,16 @@ public class LocalActivityManagerFragment extends SherlockFragment {
 	 * then I don't see this changing anytime soon.  This hach should be
 	 * safe until this class dissapears completely.
 	 *
-	 * @param id
-	 * @param finishing
-	 * @return
+	 * @param id Id of the Activity
+	 * @param finishing Lets the Manager know if the Activity is finishing
+	 * @return Returns true if it was successful otherwise it returns false
 	 */
 	private boolean destroyActivityBug(String id, boolean finishing) {
 		// http://code.google.com/p/android/issues/detail?id=12359
 		// http://www.netmite.com/android/mydroid/frameworks/base/core/java/android/app/LocalActivityManager.java
 		final LocalActivityManager activityManager = mLocalActivityManager;
 		if (activityManager != null) {
-			activityManager.destroyActivity(id, false);
+			activityManager.destroyActivity(id, finishing);
 			try {
 				final Field mActivitiesField = LocalActivityManager.class.getDeclaredField("mActivities");
 				if (mActivitiesField != null) {

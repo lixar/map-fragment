@@ -44,8 +44,7 @@ public abstract class ActivityHostFragment extends LocalActivityManagerFragment 
 			throw new IllegalStateException("View by id 'mf__hosted_view_frame' needs to be specified by this Fragment's xml layout");
 		}
 
-		ViewGroup hostedViewFrame = null;
-
+		ViewGroup hostedViewFrame;
 		try {
 			hostedViewFrame = (ViewGroup) _view;
 		} catch (ClassCastException e) {
