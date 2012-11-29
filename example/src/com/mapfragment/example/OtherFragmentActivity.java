@@ -17,9 +17,9 @@
 package com.mapfragment.example;
 
 import android.os.Bundle;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
+import android.support.v4.app.FragmentActivity;
 
-public class OtherFragmentActivity extends SherlockFragmentActivity {
+public class OtherFragmentActivity extends FragmentActivity {
     
     @Override    
     protected void onCreate(Bundle bundle) {        

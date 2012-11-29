@@ -33,7 +33,6 @@
         <android.version>4.0.1.2</android.version>
         <android.platform>14</android.platform>
         <android-support.version>r7</android-support.version>
-        <actionbarsherlock.version>4.1.0</actionbarsherlock.version>
 
         <android-maven.version>3.1.1</android-maven.version>
     </properties>
@@ -61,12 +60,6 @@
                 <groupId>com.google.android</groupId>
                 <artifactId>support-v4</artifactId>
                 <version>${android-support.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.actionbarsherlock</groupId>
-                <artifactId>library</artifactId>
-                <version>${actionbarsherlock.version}</version>
-                <type>apklib</type>
             </dependency>
         </dependencies>
     </dependencyManagement>

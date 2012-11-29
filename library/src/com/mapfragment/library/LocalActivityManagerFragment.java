@@ -19,9 +19,9 @@ package com.mapfragment.library;
 import android.app.LocalActivityManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Window;
-import com.actionbarsherlock.app.SherlockFragment;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ import java.util.Map;
  * This is a fragment that will be used during transition from activities to fragments.
  */
 @SuppressWarnings( "deprecation" )
-public class LocalActivityManagerFragment extends SherlockFragment {
+public class LocalActivityManagerFragment extends Fragment {
 
     private static final String TAG = LocalActivityManagerFragment.class.getSimpleName();
     private static final String KEY_STATE_BUNDLE = "localActivityManagerState";

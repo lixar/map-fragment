@@ -4,8 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.mapfragment</groupId>
-	<artifactId>library-sherlock-support</artifactId>
-	<name>MapFragment Library with ActionBarSherlock</name>
+	<artifactId>library</artifactId>
+	<name>MapFragment Library</name>
 	<packaging>apklib</packaging>
 
 	<parent>
@@ -27,11 +27,6 @@
 			<groupId>com.google.android</groupId>
 			<artifactId>support-v4</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>com.actionbarsherlock</groupId>
-            <artifactId>library</artifactId>
-            <type>apklib</type>
-        </dependency>
     </dependencies>
 
 	<build>

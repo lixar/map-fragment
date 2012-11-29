@@ -21,12 +21,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
+import android.view.*;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.Overlay;
@@ -101,7 +96,8 @@ public class MainMapFragment extends MapFragment {
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		getSherlockActivity().getSupportMenuInflater().inflate(R.menu.menu, menu);
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.menu, menu);
 	}
 
 	@Override
