@@ -3,5 +3,6 @@
 
     <string name="hello">Hello World, MapFragmentExampleActivity!</string>
     <string name="app_name">MapFragmentExample</string>
+    <string name="mf__maps_api_key">055_ob1V31Di-Sl4K2pH7kbSULCW5LkYFNIckhA</string>
 
 </resources>

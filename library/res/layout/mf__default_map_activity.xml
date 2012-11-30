@@ -6,7 +6,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:clickable="true"
-        android:apiKey="@string/googlemaps_sdk_key"
+        android:apiKey="@string/mf__maps_api_key"
     />
     
 </merge>
