@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.lixar.mapfragment</groupId>
 		<artifactId>root</artifactId>
-		<version>1.2-SNAPSHOT</version>
+		<version>1.2</version>
 	</parent>
 	
 	<modelVersion>4.0.0</modelVersion>
@@ -30,7 +30,7 @@
             <groupId>com.lixar.mapfragment</groupId>
             <artifactId>mapfragment</artifactId>
             <type>apklib</type>
-            <version>1.2-SNAPSHOT</version>
+            <version>1.2</version>
         </dependency>
     </dependencies>
 
