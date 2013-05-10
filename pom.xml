@@ -35,11 +35,6 @@
         <android-maven.version>3.1.1</android-maven.version>
     </properties>
 
-    <modules>
-        <module>library</module>
-        <module>example</module>
-    </modules>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -61,6 +56,34 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+	
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>!true</value>
+                </property>
+            </activation>
+            <modules>
+                <module>library</module>
+                <module>example</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>release</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <modules>
+                <module>library</module>
+            </modules>
+        </profile>
+    </profiles>
 
     <build>
         <pluginManagement>
