@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-
-	<groupId>com.mapfragment</groupId>
-	<artifactId>example</artifactId>
-	<name>MapFragment Example</name>
-	<packaging>apk</packaging>
-
+	
 	<parent>
-		<groupId>com.mapfragment</groupId>
-		<artifactId>parent</artifactId>
+		<groupId>com.lixar.mapfragment</groupId>
+		<artifactId>root</artifactId>
 		<version>1.3-SNAPSHOT</version>
 	</parent>
+	
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>example</artifactId>
+	<packaging>apk</packaging>
+	<name>MapFragment - Example</name>	
 	
 	<dependencies>
 		<dependency>
@@ -28,8 +27,8 @@
             <artifactId>support-v4</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.mapfragment</groupId>
-            <artifactId>library</artifactId>
+            <groupId>com.lixar.mapfragment</groupId>
+            <artifactId>mapfragment</artifactId>
             <type>apklib</type>
             <version>1.3-SNAPSHOT</version>
         </dependency>
